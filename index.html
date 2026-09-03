@@ -313,6 +313,21 @@
   .interest-action.email{background:#fff; color:#0B1A33;}
   .interest-action .arrow{font-size:1.25rem;}
   .interest-note{margin:18px 0 0; color:rgba(255,255,255,.5); font-size:.76rem; line-height:1.45;}
+  .interest-form{display:grid; gap:12px;}
+  .interest-form[hidden]{display:none;}
+  .interest-form label{display:grid; gap:5px; color:rgba(255,255,255,.78); font-size:.78rem; font-weight:600;}
+  .interest-form input,.interest-form textarea{width:100%; border:1px solid rgba(255,255,255,.2); border-radius:9px; padding:11px 12px; background:rgba(255,255,255,.1); color:#fff; font:inherit; font-size:.88rem; outline:none;}
+  .interest-form input::placeholder,.interest-form textarea::placeholder{color:rgba(255,255,255,.45);}
+  .interest-form input:focus,.interest-form textarea:focus{border-color:#63A6FF; box-shadow:0 0 0 3px rgba(99,166,255,.16);}
+  .interest-form textarea{min-height:116px; resize:vertical; line-height:1.45;}
+  .interest-form .field-row{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+  .interest-form button[type="submit"]{display:flex; align-items:center; justify-content:space-between; gap:12px; border:0; border-radius:12px; padding:14px 17px; background:#fff; color:#0B1A33; cursor:pointer; font:700 .92rem "Outfit",sans-serif;}
+  .interest-form button[type="submit"]:disabled{opacity:.65; cursor:wait;}
+  .interest-form .back-action{border:0; background:transparent; color:rgba(255,255,255,.68); cursor:pointer; text-align:left; padding:2px 0; font:500 .8rem "Outfit",sans-serif;}
+  .interest-form .back-action:hover{color:#fff;}
+  .interest-status{min-height:1.2em; margin:0; font-size:.82rem; line-height:1.4;}
+  .interest-status.success{color:#8BE0A9;}
+  .interest-status.error{color:#FF9D9D;}
   @media (max-width:600px){
     .interest-trigger{right:12px; bottom:12px; min-width:0; width:calc(100% - 24px); padding-right:18px;}
     .interest-trigger-copy span{font-size:.9rem;}
@@ -657,18 +672,41 @@
   <div class="interest-backdrop" data-close-interest></div>
   <div class="interest-dialog">
     <button class="interest-close" type="button" aria-label="Fenster schließen" data-close-interest>×</button>
-    <p class="eyebrow">Ihr Interesse</p>
-    <h3 id="interest-title">Möchten Sie über die Umsetzung sprechen?</h3>
-    <p>Schreiben Sie uns direkt – ganz unverbindlich und auf dem Weg, der für Sie am besten passt.</p>
-    <div class="interest-actions">
-      <a class="interest-action whatsapp" href="https://wa.me/4915129534820?text=Hallo%20Mert%2C%20ich%20habe%20Interesse%20an%20der%20neuen%20Website%20f%C3%BCr%20Logop%C3%A4die%20Goldbach.%20Lassen%20Sie%20uns%20gerne%20dar%C3%BCber%20sprechen." target="_blank" rel="noopener">
-        <span>Über WhatsApp schreiben<small>Direkter, persönlicher Kontakt</small></span><span class="arrow">↗</span>
-      </a>
-      <a class="interest-action email" href="mailto:info@kabaradigital.de?subject=Interesse%20an%20der%20neuen%20Website&body=Hallo%20Mert%2C%0A%0Aich%20habe%20Interesse%20an%20der%20neuen%20Website%20f%C3%BCr%20Logop%C3%A4die%20Goldbach.%20Lassen%20Sie%20uns%20gerne%20dar%C3%BCber%20sprechen.%0A%0AViele%20Gr%C3%BC%C3%9Fe">
-        <span>E-Mail senden<small>Nachricht im Mailprogramm vorbereiten</small></span><span class="arrow">↗</span>
-      </a>
+    <div id="interest-choice">
+      <p class="eyebrow">Ihr Interesse</p>
+      <h3 id="interest-title">Möchten Sie über die Umsetzung sprechen?</h3>
+      <p>Schreiben Sie uns direkt – ganz unverbindlich und auf dem Weg, der für Sie am besten passt.</p>
+      <div class="interest-actions">
+        <a class="interest-action whatsapp" href="https://wa.me/4915129534820?text=Hallo%20Mert%2C%20ich%20habe%20Interesse%20an%20der%20neuen%20Website%20f%C3%BCr%20Logop%C3%A4die%20Goldbach.%20Lassen%20Sie%20uns%20gerne%20dar%C3%BCber%20sprechen." target="_blank" rel="noopener">
+          <span>Über WhatsApp schreiben<small>Direkter, persönlicher Kontakt</small></span><span class="arrow">↗</span>
+        </a>
+        <a class="interest-action email" href="#interest-form" data-show-email>
+          <span>Interesse per E-Mail bestätigen<small>Kontaktdaten und Nachricht senden</small></span><span class="arrow">↗</span>
+        </a>
+      </div>
+      <p class="interest-note">Wählen Sie Ihren bevorzugten Kontaktweg.</p>
     </div>
-    <p class="interest-note">Durch einen Klick wird nur Ihre bevorzugte App geöffnet. Die Nachricht wird erst von Ihnen geprüft und versendet.</p>
+
+    <form class="interest-form" id="interest-form" action="https://api.web3forms.com/submit" method="POST" hidden>
+      <input type="hidden" name="access_key" value="98a41427-7cf1-4828-acb7-3bafb5cf5663">
+      <input type="hidden" name="subject" value="Interesse an der neuen Website für Logopädie Goldbach">
+      <input type="hidden" name="from_name" value="Website-Konzeptmappe Logopädie Goldbach">
+      <input type="hidden" name="redirect" value="false">
+      <p class="eyebrow">E-Mail-Kontakt</p>
+      <h3>Wie dürfen wir Sie erreichen?</h3>
+      <p>Hinterlassen Sie uns kurz Ihre Kontaktdaten und Ihre Nachricht.</p>
+      <div class="field-row">
+        <label>Name *<input type="text" name="name" autocomplete="name" placeholder="Ihr Name" required></label>
+        <label>Telefon<input type="tel" name="phone" autocomplete="tel" placeholder="Optional"></label>
+      </div>
+      <label>E-Mail-Adresse *<input type="email" name="email" autocomplete="email" placeholder="ihre@email.de" required></label>
+      <label>Ihre Nachricht *<textarea name="message" required>Hallo Mert, ich habe Interesse an der neuen Website für Logopädie Goldbach. Lassen Sie uns gerne darüber sprechen.</textarea></label>
+      <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none;">
+      <button type="submit">Interesse per E-Mail bestätigen<span>↗</span></button>
+      <button class="back-action" type="button" data-back-choice>← Zurück zur Auswahl</button>
+      <p class="interest-status" id="interest-status" role="status" aria-live="polite"></p>
+      <p class="interest-note">Ihre Nachricht wird sicher über Web3Forms an Kabara Digital übermittelt.</p>
+    </form>
   </div>
 </div>
 
@@ -676,12 +714,64 @@
   (() => {
     const trigger = document.querySelector('.interest-trigger');
     const modal = document.querySelector('#interest-modal');
+    const choice = document.querySelector('#interest-choice');
+    const form = document.querySelector('#interest-form');
+    const showEmail = document.querySelector('[data-show-email]');
+    const backChoice = document.querySelector('[data-back-choice]');
+    const status = document.querySelector('#interest-status');
     const closers = document.querySelectorAll('[data-close-interest]');
-    if (!trigger || !modal) return;
-    const close = () => { modal.hidden = true; trigger.setAttribute('aria-expanded', 'false'); };
-    trigger.addEventListener('click', () => { modal.hidden = false; trigger.setAttribute('aria-expanded', 'true'); modal.querySelector('.interest-close').focus(); });
+    if (!trigger || !modal || !choice || !form || !showEmail || !backChoice) return;
+
+    const showChoice = () => {
+      choice.hidden = false;
+      form.hidden = true;
+      if (status) { status.textContent = ''; status.className = 'interest-status'; }
+    };
+    const showForm = () => {
+      choice.hidden = true;
+      form.hidden = false;
+      if (status) { status.textContent = ''; status.className = 'interest-status'; }
+      form.querySelector('input[name="name"]').focus();
+    };
+    const close = () => {
+      modal.hidden = true;
+      trigger.setAttribute('aria-expanded', 'false');
+      showChoice();
+      trigger.focus();
+    };
+
+    trigger.addEventListener('click', () => {
+      modal.hidden = false;
+      trigger.setAttribute('aria-expanded', 'true');
+      showChoice();
+      modal.querySelector('.interest-close').focus();
+    });
+    showEmail.addEventListener('click', (event) => { event.preventDefault(); showForm(); });
+    backChoice.addEventListener('click', showChoice);
     closers.forEach((el) => el.addEventListener('click', close));
     document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && !modal.hidden) close(); });
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const submit = form.querySelector('button[type="submit"]');
+      if (submit) submit.disabled = true;
+      if (status) { status.textContent = 'Nachricht wird übermittelt …'; status.className = 'interest-status'; }
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' }
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok || result.success === false) throw new Error('Web3Forms submission failed');
+        if (status) { status.textContent = 'Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet.'; status.className = 'interest-status success'; }
+        form.reset();
+      } catch (error) {
+        if (status) { status.textContent = 'Der Versand ist leider fehlgeschlagen. Bitte schreiben Sie direkt an info@kabaradigital.de.'; status.className = 'interest-status error'; }
+      } finally {
+        if (submit) submit.disabled = false;
+      }
+    });
   })();
 </script>
 </body>
