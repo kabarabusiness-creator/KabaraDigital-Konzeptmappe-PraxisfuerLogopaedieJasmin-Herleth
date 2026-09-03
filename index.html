@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Konzeptmappe – Logopädie Goldbach | Kabara Digital</title>
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;500;600;700;800&family=Fraunces:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --navy:#0B1A33;
+    --navy-2:#122A4D;
+    --blue:#2F6FED;
+    --blue-2:#63A6FF;
+    --ink:#12213B;
+    --ink-soft:#4C5A73;
+    --paper:#F5F7FB;
+    --paper-alt:#EAEFF9;
+    --line: rgba(18,33,59,.12);
+    --gold:#E4A339;
+    /* Logopädie-Markenfarben, zur Referenz im Konzeptteil */
+    --lg-green:#3E6B52;
+    --lg-green-deep:#25402F;
+    --lg-honey:#E4A339;
+    --lg-rose:#C1554F;
+    --lg-paper:#FBF7EF;
+    --lg-paper-alt:#F1E7D2;
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
+  body{
+    margin:0; font-family:"Outfit", system-ui, sans-serif; color:var(--ink); background:var(--paper); line-height:1.65;
+  }
+  h1,h2,h3,.disp{font-family:"Bebas Neue", sans-serif; letter-spacing:.02em; line-height:1.02; margin:0; font-weight:400;}
+  img{max-width:100%; display:block;}
+  a{color:inherit;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 32px;}
+
+  /* progress / page nav */
+  .toc{
+    position:sticky; top:0; z-index:50; background:rgba(11,26,51,.94); backdrop-filter:blur(8px);
+    color:#fff; font-size:.82rem;
+  }
+  .toc .wrap{display:flex; align-items:center; gap:14px; padding:14px 20px; overflow-x:auto; white-space:nowrap;}
+  .toc a{text-decoration:none; color:rgba(255,255,255,.68); font-weight:500; padding:6px 2px; border-bottom:2px solid transparent;}
+  .toc a:hover{color:#fff; border-color:var(--blue-2);}
+  .toc .brand{display:flex; align-items:center; gap:8px; font-family:"Bebas Neue",sans-serif; font-size:1.05rem; letter-spacing:.03em; color:#fff; flex:none;}
+  .toc .kd-mark{width:22px; height:auto; object-fit:contain;}
+  .toc-demo{
+    margin-left:auto; flex:none; display:inline-flex; align-items:center; gap:7px;
+    color:#fff !important; background:linear-gradient(135deg, var(--blue), var(--blue-2));
+    padding:8px 16px 8px 12px; border-radius:999px; font-weight:700 !important; border-bottom:none !important;
+    box-shadow:0 6px 16px -6px rgba(47,111,237,.7);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .toc-demo svg{flex:none;}
+  .toc-demo:hover{transform:translateY(-1px); box-shadow:0 10px 22px -6px rgba(47,111,237,.85);}
+
+  /* COVER */
+  .cover{
+    min-height:92vh; display:flex; flex-direction:column; justify-content:space-between;
+    background:
+      radial-gradient(1100px 500px at 85% -10%, rgba(99,166,255,.28), transparent 60%),
+      radial-gradient(700px 500px at -10% 110%, rgba(47,111,237,.22), transparent 60%),
+      linear-gradient(160deg, var(--navy) 0%, var(--navy-2) 100%);
+    color:#fff; padding:52px 0 60px; position:relative; overflow:hidden;
+  }
+  .cover::after{
+    content:""; position:absolute; inset:0; opacity:.5; pointer-events:none;
+    background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size:64px 64px;
+    -webkit-mask-image:linear-gradient(180deg, transparent, black 40%, black 70%, transparent);
+    mask-image:linear-gradient(180deg, transparent, black 40%, black 70%, transparent);
+  }
+  .cover-top{display:flex; align-items:center; justify-content:space-between; position:relative;}
+  .kd-logo{height:64px; width:auto; object-fit:contain;}
+  .cover-tag{font-size:.82rem; color:rgba(255,255,255,.6); letter-spacing:.04em;}
+
+  .cover-mid{position:relative; padding:70px 0 0;}
+  .cover-eyebrow{
+    display:inline-flex; align-items:center; gap:10px; font-size:.86rem; font-weight:600; color:var(--blue-2);
+    background:rgba(99,166,255,.12); border:1px solid rgba(99,166,255,.3); padding:8px 16px; border-radius:999px; margin-bottom:28px;
+  }
+  .cover h1{font-size:clamp(2.6rem, 6.4vw, 5.2rem); max-width:16ch;}
+  .cover h1 em{font-style:normal; color:var(--blue-2);}
+  .cover .subhead{margin-top:22px; font-size:1.18rem; color:rgba(255,255,255,.78); max-width:52ch;}
+  .cover-meta{
+    position:relative; margin-top:64px; display:grid; grid-template-columns:repeat(4,1fr); column-gap:28px; row-gap:0;
+    border-top:1px solid rgba(255,255,255,.16);
+  }
+  .cover-meta div{padding:22px 24px 0 0; border-right:1px solid rgba(255,255,255,.16);}
+  .cover-meta div:last-child{border-right:none; padding-right:0;}
+  .cover-meta span{display:block; font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; color:rgba(255,255,255,.5); margin-bottom:6px;}
+  .cover-meta strong{font-family:"Bebas Neue",sans-serif; font-size:1.3rem; font-weight:400; letter-spacing:.02em;}
+
+  /* SECTION frame */
+  section.page{padding:88px 0;}
+  section.page.alt{background:var(--paper-alt);}
+  .kicker{
+    display:inline-flex; align-items:center; gap:9px; color:var(--blue); font-weight:700; font-size:.8rem;
+    text-transform:uppercase; letter-spacing:.08em; margin-bottom:16px;
+  }
+  .kicker .num{
+    width:26px; height:26px; border-radius:7px; background:var(--navy); color:#fff; font-family:"Bebas Neue",sans-serif;
+    display:flex; align-items:center; justify-content:center; font-size:.95rem; letter-spacing:0;
+  }
+  .page h2{font-size:clamp(1.9rem, 3.6vw, 2.9rem); margin-bottom:20px; color:var(--navy);}
+  .page > .wrap > p.lead{font-size:1.08rem; color:var(--ink-soft); max-width:70ch; margin:0 0 44px;}
+
+  /* Ist-Zustand */
+  .diagnose-grid{display:grid; grid-template-columns:1fr 1fr; gap:28px;}
+  .diagnose-card{background:#fff; border:1px solid var(--line); border-radius:18px; padding:30px 28px;}
+  .diagnose-card h3{font-family:"Outfit",sans-serif; font-weight:700; font-size:1.05rem; margin-bottom:16px; display:flex; align-items:center; gap:10px;}
+  .diagnose-card.problem h3{color:#B23B3B;}
+  .diagnose-card.chance h3{color:#1E7A4C;}
+  .diagnose-card ul{margin:0; padding:0; list-style:none;}
+  .diagnose-card li{
+    padding:11px 0 11px 24px; border-top:1px dashed var(--line); position:relative; font-size:.96rem; color:var(--ink-soft);
+  }
+  .diagnose-card li:first-child{border-top:none;}
+  .diagnose-card.problem li::before{content:"–"; position:absolute; left:0; color:#B23B3B; font-weight:700;}
+  .diagnose-card.chance li::before{content:"+"; position:absolute; left:0; color:#1E7A4C; font-weight:700;}
+
+  /* Zielgruppen */
+  .persona-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  .persona{background:#fff; border:1px solid var(--line); border-radius:18px; padding:28px 26px;}
+  .persona .tag{font-size:.74rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--blue); margin-bottom:12px;}
+  .persona h3{font-family:"Outfit",sans-serif; font-weight:700; font-size:1.12rem; margin-bottom:10px; color:var(--navy);}
+  .persona p{font-size:.92rem; color:var(--ink-soft); margin:0;}
+
+  /* SEO / Keywords */
+  .kw-table{width:100%; border-collapse:collapse; background:#fff; border-radius:14px; overflow:hidden; border:1px solid var(--line);}
+  .kw-table th, .kw-table td{padding:14px 18px; text-align:left; font-size:.92rem;}
+  .kw-table thead th{background:var(--navy); color:#fff; font-family:"Outfit",sans-serif; font-weight:600; font-size:.8rem; text-transform:uppercase; letter-spacing:.05em;}
+  .kw-table tbody tr:nth-child(even){background:var(--paper-alt);}
+  .kw-table td.tag{color:var(--ink-soft);}
+  .badge{display:inline-block; padding:3px 10px; border-radius:999px; font-size:.74rem; font-weight:600;}
+  .badge.local{background:#E2F2E8; color:#1E7A4C;}
+  .badge.info{background:#E7EFFD; color:var(--blue);}
+
+  .seo-features{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:36px;}
+  .seo-feat{padding:22px 22px; background:#fff; border:1px solid var(--line); border-radius:14px;}
+  .seo-feat h4{font-family:"Outfit",sans-serif; font-weight:700; font-size:.96rem; margin:0 0 8px; color:var(--navy);}
+  .seo-feat p{font-size:.88rem; color:var(--ink-soft); margin:0;}
+
+  /* Design concept */
+  .design-grid{display:grid; grid-template-columns:1fr 1fr; gap:44px;}
+  .swatches{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+  .swatch{border-radius:14px; padding:20px 16px; min-height:96px; display:flex; flex-direction:column; justify-content:flex-end; box-shadow:0 10px 24px -14px rgba(18,33,59,.35);}
+  .swatch span{font-family:"Outfit",sans-serif; font-weight:700; font-size:.76rem; display:block;}
+  .swatch small{font-size:.68rem; opacity:.85; font-family:monospace;}
+  .type-specimen{background:#fff; border:1px solid var(--line); border-radius:18px; padding:30px 28px;}
+  .type-specimen .display-demo{font-family:"Fraunces", serif; font-weight:600; font-size:2.3rem; color:var(--lg-green-deep); line-height:1.1; margin-bottom:6px;}
+  .type-specimen .display-demo em{font-style:italic; font-weight:500; color:var(--lg-honey);}
+  .type-specimen .body-demo{font-family:"Outfit",sans-serif; color:var(--ink-soft); font-size:.95rem; margin-top:14px;}
+  .type-specimen .label{font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-soft); margin-top:22px; margin-bottom:6px;}
+  .principle-list{margin-top:28px; display:grid; gap:14px;}
+  .principle-list li{list-style:none; display:flex; gap:14px; align-items:flex-start; font-size:.94rem; color:var(--ink-soft);}
+  .principle-list .dot{flex:none; width:8px; height:8px; border-radius:50%; background:var(--lg-honey); margin-top:8px;}
+
+  /* Live-Vorschau CTA */
+  .demo-cta{
+    display:flex; align-items:center; gap:20px; text-decoration:none;
+    background:linear-gradient(120deg, var(--navy) 0%, var(--navy-2) 65%, #163257 100%);
+    color:#fff; border-radius:18px; padding:22px 26px; margin-bottom:44px;
+    box-shadow:0 24px 50px -22px rgba(11,26,51,.55);
+    border:1px solid rgba(99,166,255,.25);
+    position:relative; overflow:hidden;
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .demo-cta::before{
+    content:""; position:absolute; inset:0;
+    background:radial-gradient(420px 160px at 15% 0%, rgba(99,166,255,.3), transparent 70%);
+    pointer-events:none;
+  }
+  .demo-cta:hover{transform:translateY(-2px); box-shadow:0 30px 60px -22px rgba(11,26,51,.65);}
+  .demo-cta-icon{
+    position:relative; flex:none; width:52px; height:52px; border-radius:14px;
+    background:linear-gradient(135deg, var(--blue), var(--blue-2)); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 10px 22px -8px rgba(47,111,237,.7);
+  }
+  .demo-cta-text{position:relative; flex:1;}
+  .demo-cta-text strong{display:block; font-family:"Outfit",sans-serif; font-weight:700; font-size:1.08rem;}
+  .demo-cta-text span{display:block; font-size:.86rem; color:rgba(255,255,255,.68); margin-top:4px;}
+  .demo-cta-arrow{
+    position:relative; flex:none; width:42px; height:42px; border-radius:50%;
+    background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.25);
+    display:flex; align-items:center; justify-content:center; font-size:1.15rem;
+    transition:transform .18s ease, background .18s ease;
+  }
+  .demo-cta:hover .demo-cta-arrow{transform:translate(3px,-3px); background:rgba(255,255,255,.2);}
+
+  /* Preview */
+  .preview-block{margin-bottom:44px;}
+  .preview-frame{
+    border-radius:16px; overflow:hidden; border:1px solid var(--line); box-shadow:0 30px 60px -30px rgba(18,33,59,.4);
+  }
+  .preview-cap{display:flex; justify-content:space-between; align-items:baseline; margin:14px 4px 0;}
+  .preview-cap h4{font-family:"Outfit",sans-serif; font-weight:700; font-size:.98rem; color:var(--navy); margin:0;}
+  .preview-cap span{font-size:.82rem; color:var(--ink-soft);}
+  .browser-chrome{background:#E7EAF2; padding:10px 14px; display:flex; align-items:center; gap:8px;}
+  .browser-chrome .dot2{width:9px; height:9px; border-radius:50%; background:#C7CCDA;}
+  .browser-chrome .url{
+    margin-left:8px; background:#fff; border-radius:6px; padding:5px 14px; font-size:.76rem; color:var(--ink-soft); flex:1;
+    font-family:monospace;
+  }
+
+  /* Sitemap */
+  .sitemap{display:flex; flex-direction:column; align-items:center; gap:0; margin-top:12px;}
+  .sitemap .root{
+    background:var(--navy); color:#fff; padding:14px 26px; border-radius:10px; font-family:"Outfit",sans-serif; font-weight:600; font-size:.94rem;
+  }
+  .sitemap .branch{width:2px; height:34px; background:var(--line);}
+  .sitemap .row{display:flex; gap:18px; flex-wrap:wrap; justify-content:center;}
+  .sitemap .node{
+    background:#fff; border:1px solid var(--line); border-radius:10px; padding:12px 20px; font-size:.86rem; font-weight:600; color:var(--ink);
+  }
+  .sitemap .sub{font-size:.72rem; font-weight:400; color:var(--ink-soft); display:block; margin-top:3px;}
+
+  /* Checklist */
+  .check-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px 34px; margin-top:8px;}
+  .check-item{display:flex; gap:12px; align-items:flex-start; padding:14px 0; border-top:1px solid var(--line);}
+  .check-item:nth-child(1), .check-item:nth-child(2){border-top:none;}
+  .check-item .tick{
+    flex:none; width:22px; height:22px; border-radius:6px; background:#E2F2E8; color:#1E7A4C; display:flex; align-items:center; justify-content:center;
+  }
+  .check-item p{margin:0; font-size:.92rem; color:var(--ink-soft);}
+  .check-item strong{display:block; color:var(--ink); font-size:.94rem; margin-bottom:2px; font-family:"Outfit",sans-serif; font-weight:600;}
+
+  /* Timeline */
+  .timeline{margin-top:10px;}
+  .tl-item{display:grid; grid-template-columns:70px 1fr; gap:24px; padding:26px 0; border-top:1px solid var(--line);}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-step{font-family:"Bebas Neue",sans-serif; font-size:1.6rem; color:var(--blue);}
+  .tl-item h4{font-family:"Outfit",sans-serif; font-weight:700; font-size:1.02rem; margin:0 0 6px; color:var(--navy);}
+  .tl-item p{margin:0; color:var(--ink-soft); font-size:.94rem;}
+
+  /* CTA / contact */
+  .cta{
+    background:linear-gradient(150deg, var(--navy) 0%, var(--navy-2) 100%); color:#fff; border-radius:24px; padding:56px 52px;
+    display:grid; grid-template-columns:1.2fr .8fr; gap:40px; align-items:center; position:relative; overflow:hidden;
+  }
+  .cta::before{
+    content:""; position:absolute; inset:0; background:radial-gradient(600px 300px at 90% 0%, rgba(99,166,255,.25), transparent 60%);
+  }
+  .cta h2{color:#fff; position:relative;}
+  .cta p{color:rgba(255,255,255,.78); margin:16px 0 0; max-width:46ch; position:relative; font-size:1.02rem;}
+  .cta-actions{position:relative; display:flex; flex-direction:column; gap:12px;}
+  .cta-person{
+    position:relative; display:flex; align-items:center; gap:14px; margin-top:28px;
+    padding-top:24px; border-top:1px solid rgba(255,255,255,.16);
+  }
+  .cta-person img{width:52px; height:52px; border-radius:50%; object-fit:cover; flex:none; border:2px solid rgba(255,255,255,.35);}
+  .cta-person strong{display:block; font-family:"Outfit",sans-serif; font-weight:700; font-size:.94rem;}
+  .cta-person span{display:block; font-size:.8rem; color:rgba(255,255,255,.65); margin-top:2px;}
+  .cta-btn{
+    display:flex; align-items:center; justify-content:space-between; gap:14px; background:#fff; color:var(--navy);
+    padding:16px 22px; border-radius:12px; text-decoration:none; font-weight:700; font-family:"Outfit",sans-serif; font-size:.96rem;
+  }
+  .cta-btn.outline{background:transparent; color:#fff; border:1px solid rgba(255,255,255,.35);}
+  .cta-btn span.small{display:block; font-weight:400; font-size:.78rem; opacity:.75; margin-top:2px;}
+
+  footer.mappe{padding:36px 0 50px; text-align:center; color:var(--ink-soft); font-size:.82rem;}
+
+  @media (max-width: 900px){
+    .diagnose-grid, .design-grid, .persona-grid, .seo-features, .check-grid{grid-template-columns:1fr;}
+    .cover-meta{grid-template-columns:1fr 1fr;}
+    .cover-meta div{border-right:none; border-bottom:1px solid rgba(255,255,255,.16); padding-bottom:16px; margin-bottom:8px;}
+    .cta{grid-template-columns:1fr; padding:40px 28px;}
+    .toc .wrap{gap:16px;}
+  }
+  /* Interessen-Popup */
+  .interest-trigger{
+    position:fixed; right:24px; bottom:24px; z-index:90; display:flex; align-items:center; gap:14px;
+    min-width:320px; padding:12px 22px 12px 12px; border:1px solid #2F6FED; border-radius:999px;
+    background:#0E1220; color:#fff; cursor:pointer; text-align:left;
+    box-shadow:0 16px 40px -16px rgba(11,26,51,.7); transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .interest-trigger:hover{transform:translateY(-2px); box-shadow:0 22px 44px -16px rgba(11,26,51,.85);}
+  .interest-mark{
+    flex:none; width:54px; height:54px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    background:#fff; color:#1554C7; font-family:"Outfit",sans-serif; font-weight:800; font-size:.95rem; letter-spacing:-.08em;
+    box-shadow:0 5px 16px -8px rgba(255,255,255,.8);
+  }
+  .interest-trigger-copy{display:flex; flex-direction:column; gap:2px;}
+  .interest-trigger-copy strong{font-family:"Bebas Neue",sans-serif; font-size:1.2rem; font-weight:400; letter-spacing:.03em; color:#63A6FF; line-height:1;}
+  .interest-trigger-copy span{font-size:1rem; color:rgba(255,255,255,.72); line-height:1.2;}
+  .interest-modal{position:fixed; inset:0; z-index:120; display:grid; place-items:center; padding:24px;}
+  .interest-modal[hidden]{display:none;}
+  .interest-backdrop{position:absolute; inset:0; background:rgba(7,14,28,.72); backdrop-filter:blur(5px);}
+  .interest-dialog{
+    position:relative; width:min(100%, 480px); padding:34px; border:1px solid rgba(99,166,255,.35); border-radius:22px;
+    background:linear-gradient(150deg,#0B1A33 0%,#122A4D 100%); color:#fff; box-shadow:0 30px 80px -24px rgba(0,0,0,.7);
+  }
+  .interest-close{
+    position:absolute; top:14px; right:14px; width:34px; height:34px; border:1px solid rgba(255,255,255,.22); border-radius:50%;
+    background:rgba(255,255,255,.08); color:#fff; font-size:1.25rem; line-height:1; cursor:pointer;
+  }
+  .interest-dialog .eyebrow{margin:0 0 12px; color:#63A6FF; font-size:.76rem; text-transform:uppercase; letter-spacing:.1em; font-weight:700;}
+  .interest-dialog h3{font-family:"Outfit",sans-serif; font-size:1.55rem; line-height:1.15; margin:0 42px 10px 0; color:#fff;}
+  .interest-dialog > p:not(.eyebrow){margin:0 0 24px; color:rgba(255,255,255,.72); font-size:.94rem;}
+  .interest-actions{display:grid; gap:10px;}
+  .interest-action{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:15px 17px; border-radius:12px; text-decoration:none; font-family:"Outfit",sans-serif; font-weight:700; transition:transform .15s ease, filter .15s ease;}
+  .interest-action:hover{transform:translateY(-1px); filter:brightness(1.06);}
+  .interest-action small{display:block; margin-top:2px; font-size:.75rem; font-weight:400; opacity:.72;}
+  .interest-action.whatsapp{background:#25D366; color:#082B18;}
+  .interest-action.email{background:#fff; color:#0B1A33;}
+  .interest-action .arrow{font-size:1.25rem;}
+  .interest-note{margin:18px 0 0; color:rgba(255,255,255,.5); font-size:.76rem; line-height:1.45;}
+  @media (max-width:600px){
+    .interest-trigger{right:12px; bottom:12px; min-width:0; width:calc(100% - 24px); padding-right:18px;}
+    .interest-trigger-copy span{font-size:.9rem;}
+    .interest-dialog{padding:30px 22px 24px;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="toc" aria-label="Kapitelnavigation">
+  <div class="wrap">
+    <span class="brand"><img class="kd-mark" src="kabara-icon.png" alt="">Kabara Digital</span>
+    <a href="#ausgangslage">Ausgangslage</a>
+    <a href="#zielgruppen">Zielgruppen</a>
+    <a href="#strategie">SEO-Strategie</a>
+    <a href="#design">Design</a>
+    <a href="#vorschau">Live-Vorschau</a>
+    <a href="#struktur">Struktur</a>
+    <a href="#technik">Technik</a>
+    <a href="#zeitplan">Ablauf</a>
+    <a href="#kontakt">Kontakt</a>
+    <a href="index.html" target="_blank" rel="noopener" class="toc-demo">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="m10 8.5 5 3.5-5 3.5v-7Z" fill="currentColor" stroke="none"/></svg>
+      Demo ansehen
+    </a>
+  </div>
+</nav>
+
+<!-- COVER -->
+<header class="cover">
+  <div class="wrap">
+    <div class="cover-top">
+      <img class="kd-logo" src="kabara-logo-full.png" alt="Kabara Digital">
+      <span class="cover-tag">Web design &amp; online marketing</span>
+    </div>
+
+    <div class="cover-mid">
+      <span class="cover-eyebrow">Konzeptmappe · Website-Relaunch</span>
+      <h1>Eine neue digitale <em>Praxis-Adresse</em> für Logopädie Goldbach.</h1>
+      <p class="subhead">Wie eine moderne, familienfreundliche und SEO-optimierte Website mehr Eltern, Angehörige und Patient:innen aus Goldbach und Aschaffenburg zum Anruf bewegt.</p>
+    </div>
+
+    <div class="cover-meta">
+      <div><span>Erstellt für</span><strong>Logopädie Goldbach</strong></div>
+      <div><span>Ansprechpartnerin</span><strong>Jasmin Herleth</strong></div>
+      <div><span>Leistung</span><strong>Website-Konzept</strong></div>
+      <div><span>Erstellt von</span><strong>Kabara Digital</strong></div>
+    </div>
+  </div>
+</header>
+
+<!-- AUSGANGSLAGE -->
+<section class="page" id="ausgangslage">
+  <div class="wrap">
+    <p class="kicker"><span class="num">01</span>Ausgangslage</p>
+    <h2>Eine starke Praxis verdient einen ebenso starken ersten Eindruck</h2>
+    <p class="lead">Die bestehende Website läuft über einen älteren Jimdo-Baukasten. Inhaltlich ist bereits vieles da – Leistungen, Kontaktdaten, ein sympathischer Praxis-Slogan. Was fehlt, ist die digitale Verpackung, die aus Besucher:innen tatsächlich Anrufer:innen macht.</p>
+
+    <div class="diagnose-grid">
+      <div class="diagnose-card problem">
+        <h3>Was die aktuelle Seite bremst</h3>
+        <ul>
+          <li>Generisches Baukasten-Design ohne eigene visuelle Identität</li>
+          <li>Kein Vertrauensmoment auf den ersten Blick</li>
+          <li>Lange Aufzählungen von Störungsbildern ohne Orientierung für Laien</li>
+          <li>Schwache technische SEO-Basis (Meta-Texte, Struktur, Ladezeit)</li>
+          <li>Keine klare Handlungsaufforderung – Telefonnummer wirkt nicht als Call-to-Action</li>
+        </ul>
+      </div>
+      <div class="diagnose-card chance">
+        <h3>Was die neue Website leisten soll</h3>
+        <ul>
+          <li>Warmer, familienfreundlicher erster Eindruck mit echtem Praxis-Team</li>
+          <li>Klare Wege für Eltern, erwachsene Patient:innen und Angehörige</li>
+          <li>Verständliche Bündelung der Leistungen statt reiner Aufzählung</li>
+          <li>Lokale Sichtbarkeit bei Google für „Logopädie Goldbach" &amp; Umgebung</li>
+          <li>Durchgängige Handlungsaufforderung: anrufen, Termin anfragen</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ZIELGRUPPEN -->
+<section class="page alt" id="zielgruppen">
+  <div class="wrap">
+    <p class="kicker"><span class="num">02</span>Zielgruppenanalyse</p>
+    <h2>Drei Besuchergruppen, drei unterschiedliche Anliegen</h2>
+    <p class="lead">Die Website muss innerhalb weniger Sekunden zeigen: „Hier bin ich mit meinem Anliegen richtig." Deshalb wird die Startseite konsequent nach Zielgruppen sortiert statt nach Störungsbildern.</p>
+
+    <div class="persona-grid">
+      <div class="persona">
+        <p class="tag">Eltern</p>
+        <h3>Sorge um die Sprachentwicklung</h3>
+        <p>Suchen schnell, oft abends oder nach dem Kinderarztbesuch. Brauchen Beruhigung, Verständlichkeit und einen niedrigschwelligen ersten Kontakt.</p>
+      </div>
+      <div class="persona">
+        <p class="tag">Angehörige</p>
+        <h3>Nach Schlaganfall, bei Parkinson &amp; Demenz</h3>
+        <p>Suchen oft stellvertretend für Betroffene. Brauchen Fachkompetenz, Vertrauen und die Option auf Hausbesuche klar sichtbar.</p>
+      </div>
+      <div class="persona">
+        <p class="tag">Zuweisende Ärzte</p>
+        <h3>Kinder-, Haus- &amp; Fachärzte</h3>
+        <p>Prüfen kurz das Leistungsspektrum und die Erreichbarkeit, bevor sie eine Empfehlung aussprechen. Brauchen Übersicht statt Emotion.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRATEGIE / SEO -->
+<section class="page" id="strategie">
+  <div class="wrap">
+    <p class="kicker"><span class="num">03</span>Content- &amp; SEO-Strategie</p>
+    <h2>Lokal gefunden werden, wenn es darauf ankommt</h2>
+    <p class="lead">Die meisten Suchanfragen entstehen aus einer konkreten Situation heraus – ein verordneter Rezeptzettel, ein Verdacht, eine Empfehlung. Die Seite wird inhaltlich und technisch auf genau diese Suchanfragen ausgerichtet.</p>
+
+    <table class="kw-table">
+      <thead>
+        <tr><th>Suchbegriff</th><th>Intention</th><th>Umsetzung auf der Website</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Logopädie Goldbach</td><td class="tag"><span class="badge local">Lokal</span></td><td class="tag">Title, H1-Umfeld, Schema.org LocalBusiness</td></tr>
+        <tr><td>Logopäde / Logopädin Aschaffenburg</td><td class="tag"><span class="badge local">Lokal</span></td><td class="tag">Meta-Description, Fußzeile, Standortangaben</td></tr>
+        <tr><td>Sprachtherapie Kinder Late Talker</td><td class="tag"><span class="badge info">Info</span></td><td class="tag">Leistungsblock „Sprachentwicklung &amp; Aussprache"</td></tr>
+        <tr><td>Logopädie Hausbesuch Goldbach</td><td class="tag"><span class="badge local">Lokal</span></td><td class="tag">Eigener Wegweiser-Punkt + Trust-Strip im Hero</td></tr>
+        <tr><td>Aphasie Therapie nach Schlaganfall</td><td class="tag"><span class="badge info">Info</span></td><td class="tag">Leistungsblock „Neurologische Störungen"</td></tr>
+        <tr><td>Logopädie Praxis barrierefrei</td><td class="tag"><span class="badge info">Info</span></td><td class="tag">Trust-Strip, FAQ-Eintrag, Kontaktbereich</td></tr>
+      </tbody>
+    </table>
+
+    <div class="seo-features">
+      <div class="seo-feat">
+        <h4>Strukturierte Daten</h4>
+        <p>MedicalBusiness- und FAQPage-Schema (JSON-LD) für reichhaltigere Google-Ergebnisse mit Öffnungszeiten und Rich Snippets.</p>
+      </div>
+      <div class="seo-feat">
+        <h4>Klare Seitenstruktur</h4>
+        <p>Eine H1 pro Seite, logische H2/H3-Hierarchie je Leistungsblock – wichtig für Lesbarkeit durch Google und Screenreader.</p>
+      </div>
+      <div class="seo-feat">
+        <h4>Local SEO Grundlage</h4>
+        <p>Konsistente NAP-Daten (Name, Adresse, Telefon) als Basis für einen optimierten Google-Unternehmensprofil-Eintrag.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DESIGN -->
+<section class="page alt" id="design">
+  <div class="wrap">
+    <p class="kicker"><span class="num">04</span>Design-Konzept</p>
+    <h2>Warm, familiär, fachlich fundiert</h2>
+    <p class="lead">Das Design lehnt sich an die reale Praxiswelt an: das Team-Foto im Streuobstgarten gibt Ton und Farbwelt vor – warmes Grün, goldenes Licht, ruhiges Creme. Keine sterile Arztpraxis-Optik, sondern ein Ort, an dem sich Familien wohlfühlen.</p>
+
+    <div class="design-grid">
+      <div>
+        <div class="swatches">
+          <div class="swatch" style="background:var(--lg-green); color:#fff;"><span>Tannengrün</span><small>#3E6B52</small></div>
+          <div class="swatch" style="background:var(--lg-green-deep); color:#fff;"><span>Tiefgrün</span><small>#25402F</small></div>
+          <div class="swatch" style="background:var(--lg-honey); color:#25402F;"><span>Honiggold</span><small>#E4A339</small></div>
+          <div class="swatch" style="background:var(--lg-paper); color:#25402F; border:1px solid var(--line);"><span>Elfenbein</span><small>#FBF7EF</small></div>
+          <div class="swatch" style="background:var(--lg-paper-alt); color:#25402F; border:1px solid var(--line);"><span>Warmsand</span><small>#F1E7D2</small></div>
+          <div class="swatch" style="background:var(--lg-rose); color:#fff;"><span>Beerrot</span><small>#C1554F</small></div>
+        </div>
+        <ul class="principle-list">
+          <li><span class="dot"></span>Echtes Team-Foto statt Stockfotografie – der wichtigste Vertrauensanker im Hero-Bereich.</li>
+          <li><span class="dot"></span>Nummerierung nur dort, wo tatsächlich ein Ablauf beschrieben wird (z. B. „5 Schritte zur Therapie").</li>
+          <li><span class="dot"></span>Ruhige, großzügige Abstände statt vollgestopfter Kacheln – passend zu einem Gesundheitsthema.</li>
+        </ul>
+      </div>
+
+      <div class="type-specimen">
+        <p class="label">Headline-Schrift</p>
+        <p class="display-demo">Damit jedes Wort <em>seinen Weg</em> findet.</p>
+        <p class="label">Fließtext-Schrift</p>
+        <p class="body-demo">Fraunces für warme, persönliche Überschriften – Figtree für gut lesbare Fließtexte auf allen Endgeräten. Eine bewusste Typografie-Wahl statt System-Standardschrift.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE VORSCHAU -->
+<section class="page" id="vorschau">
+  <div class="wrap">
+    <p class="kicker"><span class="num">05</span>Live-Vorschau</p>
+    <h2>So könnte die neue Website aussehen</h2>
+    <p class="lead">Die vollständige, interaktive Demo-Website liegt dieser Konzeptmappe bei und lässt sich beliebig im Browser öffnen. Hier ein erster Einblick in vier zentrale Bereiche.</p>
+
+    <a class="demo-cta" href="index.html" target="_blank" rel="noopener">
+      <span class="demo-cta-icon" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="15" rx="2"/><path d="M8 21h8M12 19v2"/><path d="m10 9 4 3-4 3V9Z" fill="currentColor" stroke="none"/></svg>
+      </span>
+      <span class="demo-cta-text"><strong>Demo-Website live öffnen</strong><span>Vollständig klickbar, inkl. Kontaktformular &amp; Popup – im neuen Tab</span></span>
+      <span class="demo-cta-arrow">↗</span>
+    </a>
+
+    <div class="preview-block">
+      <div class="preview-frame">
+        <div class="browser-chrome"><div class="dot2"></div><div class="dot2"></div><div class="dot2"></div><div class="url">logopaedie-goldbach.de</div></div>
+        <img src="preview-hero.jpg" alt="Startseite der neuen Website mit Team-Foto, Hero-Bereich und Google-Bewertung">
+      </div>
+      <div class="preview-cap"><h4>Startseite / Hero</h4><span>Echtes Team-Foto, Google-Bewertung &amp; klare Handlungsaufforderung</span></div>
+    </div>
+
+    <div class="preview-block">
+      <div class="preview-frame">
+        <div class="browser-chrome"><div class="dot2"></div><div class="dot2"></div><div class="dot2"></div><div class="url">logopaedie-goldbach.de/#leistungen</div></div>
+        <img src="leistungen.png" alt="Leistungsübersicht der neuen Website, gruppiert nach Themen">
+      </div>
+      <div class="preview-cap"><h4>Leistungen</h4><span>Gebündelt nach Themen statt reiner Auflistung</span></div>
+    </div>
+
+    <div class="preview-block">
+      <div class="preview-frame">
+        <div class="browser-chrome"><div class="dot2"></div><div class="dot2"></div><div class="dot2"></div><div class="url">logopaedie-goldbach.de/#bewertungen</div></div>
+        <img src="bewertungen.png" alt="Bewertungen-Bereich der neuen Website mit 5,0 Sternen und Link zu Google">
+      </div>
+      <div class="preview-cap"><h4>Bewertungen</h4><span>5,0★-Google-Bewertung sichtbar als Vertrauenssignal</span></div>
+    </div>
+
+    <div class="preview-block">
+      <div class="preview-frame">
+        <div class="browser-chrome"><div class="dot2"></div><div class="dot2"></div><div class="dot2"></div><div class="url">logopaedie-goldbach.de/#kontakt</div></div>
+        <img src="kontakt.png" alt="Kontaktbereich der neuen Website mit echtem Kontaktformular, Adresse und Öffnungszeiten">
+      </div>
+      <div class="preview-cap"><h4>Kontakt</h4><span>Echtes Kontaktformular mit direktem E-Mail-Versand</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- STRUKTUR -->
+<section class="page alt" id="struktur">
+  <div class="wrap">
+    <p class="kicker"><span class="num">06</span>Seitenstruktur</p>
+    <h2>Eine fokussierte One-Page-Struktur</h2>
+    <p class="lead">Für den Start empfehlen wir eine klar gegliederte One-Page-Website mit Ankerlinks – schnell ladend, mobil einfach zu bedienen und leicht zu pflegen. Bei Bedarf lässt sich jeder Block später zu einer eigenen Unterseite ausbauen.</p>
+
+    <div class="sitemap">
+      <div class="root">Startseite – Logopädie Goldbach</div>
+      <div class="branch"></div>
+      <div class="row">
+        <div class="node">Für wen wir da sind<span class="sub">Kinder · Erwachsene · Hausbesuche</span></div>
+        <div class="node">Leistungen<span class="sub">6 Themenblöcke</span></div>
+        <div class="node">Ablauf<span class="sub">5 Schritte</span></div>
+        <div class="node">Über uns<span class="sub">Team &amp; Praxis</span></div>
+        <div class="node">FAQ<span class="sub">5 Fragen</span></div>
+        <div class="node">Kontakt<span class="sub">Adresse &amp; Formular</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECHNIK -->
+<section class="page" id="technik">
+  <div class="wrap">
+    <p class="kicker"><span class="num">07</span>Technische Umsetzung</p>
+    <h2>Sauber gebaut, schnell geladen, überall lesbar</h2>
+    <div class="check-grid">
+      <div class="check-item"><span class="tick">✓</span><p><strong>Mobile-first</strong>Vollständig responsiv von Smartphone bis Desktop getestet.</p></div>
+      <div class="check-item"><span class="tick">✓</span><p><strong>Schnelle Ladezeit</strong>Schlanker Code ohne unnötige Skripte oder Baukasten-Overhead.</p></div>
+      <div class="check-item"><span class="tick">✓</span><p><strong>Strukturierte Daten</strong>Schema.org-Markup für Praxis, Öffnungszeiten &amp; FAQ.</p></div>
+      <div class="check-item"><span class="tick">✓</span><p><strong>Barrierearm</strong>Tastaturbedienbar, klare Kontraste, sinnvolle Alt-Texte.</p></div>
+      <div class="check-item"><span class="tick">✓</span><p><strong>Meta-Tags &amp; OpenGraph</strong>Für gute Darstellung in Google-Ergebnissen &amp; beim Teilen.</p></div>
+      <div class="check-item"><span class="tick">✓</span><p><strong>Kontaktformular-Anbindung</strong>Direkter E-Mail-Versand ohne separates Postfach-Tool.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ZEITPLAN -->
+<section class="page alt" id="zeitplan">
+  <div class="wrap">
+    <p class="kicker"><span class="num">08</span>Nächste Schritte</p>
+    <h2>So geht es weiter</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <span class="tl-step">01</span>
+        <div><h4>Feedback-Gespräch</h4><p>Wir besprechen diese Konzeptmappe gemeinsam und sammeln Ihr Feedback zu Inhalten, Fotos und Tonalität.</p></div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-step">02</span>
+        <div><h4>Feinschliff</h4><p>Texte, Bilder und Leistungen werden final abgestimmt – inklusive echter Praxisfotos, falls gewünscht.</p></div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-step">03</span>
+        <div><h4>Technische Umsetzung</h4><p>Anbindung an Ihre Domain, Google Unternehmensprofil und Kontaktformular.</p></div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-step">04</span>
+        <div><h4>Livegang &amp; Übergabe</h4><p>Die neue Website geht online – inklusive kurzer Einweisung für einfache Pflege.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISITENKARTE -->
+<section class="page alt" id="visitenkarte">
+  <div class="wrap">
+    <div style="text-align:center;">
+      <p class="kicker" style="justify-content:center;"><span class="num">09</span>Visitenkarte</p>
+      <h2>Ihr Ansprechpartner für digitale Lösungen</h2>
+      <img src="visitenkarte.png" alt="Visitenkarte von Mert Kabara, Kabara Digital" style="width:100%; max-width:960px; height:auto; margin:32px auto 0; border-radius:18px; box-shadow:0 24px 50px -24px rgba(18,33,59,.45);">
+    </div>
+  </div>
+</section>
+
+
+<!-- KONTAKT -->
+<section class="page" id="kontakt">
+  <div class="wrap">
+    <div class="cta">
+      <div>
+        <h2>Lust, das gemeinsam umzusetzen?</h2>
+        <p>Wir freuen uns über ein kurzes, unverbindliches Gespräch – persönlich, telefonisch oder per WhatsApp.</p>
+        <div class="cta-person">
+          <img src="mert-avatar.png" alt="Mert Kabara">
+          <div><strong>Mert Kabara</strong><span>Webdeveloper &amp; Designer, Kabara Digital</span></div>
+        </div>
+      </div>
+      <div class="cta-actions">
+        <a class="cta-btn" href="https://wa.me/4915129534820" target="_blank" rel="noopener">
+          WhatsApp<span class="small">015129534820</span>
+        </a>
+        <a class="cta-btn outline" href="mailto:info@kabaradigital.de">
+          E-Mail<span class="small">info@kabaradigital.de</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="mappe">
+  <p>Konzeptmappe erstellt von Kabara Digital · Unverbindliches Angebot, kein Vertragsbestandteil</p>
+</footer>
+
+<button class="interest-trigger" type="button" aria-controls="interest-modal" aria-expanded="false">
+  <span class="interest-mark" aria-hidden="true">KD</span>
+  <span class="interest-trigger-copy"><strong>KABARA DIGITAL</strong><span>Gefällt Ihnen diese Website?</span></span>
+</button>
+
+<div class="interest-modal" id="interest-modal" role="dialog" aria-modal="true" aria-labelledby="interest-title" hidden>
+  <div class="interest-backdrop" data-close-interest></div>
+  <div class="interest-dialog">
+    <button class="interest-close" type="button" aria-label="Fenster schließen" data-close-interest>×</button>
+    <p class="eyebrow">Ihr Interesse</p>
+    <h3 id="interest-title">Möchten Sie über die Umsetzung sprechen?</h3>
+    <p>Schreiben Sie uns direkt – ganz unverbindlich und auf dem Weg, der für Sie am besten passt.</p>
+    <div class="interest-actions">
+      <a class="interest-action whatsapp" href="https://wa.me/4915129534820?text=Hallo%20Mert%2C%20ich%20habe%20Interesse%20an%20der%20neuen%20Website%20f%C3%BCr%20Logop%C3%A4die%20Goldbach.%20Lassen%20Sie%20uns%20gerne%20dar%C3%BCber%20sprechen." target="_blank" rel="noopener">
+        <span>Über WhatsApp schreiben<small>Direkter, persönlicher Kontakt</small></span><span class="arrow">↗</span>
+      </a>
+      <a class="interest-action email" href="mailto:info@kabaradigital.de?subject=Interesse%20an%20der%20neuen%20Website&body=Hallo%20Mert%2C%0A%0Aich%20habe%20Interesse%20an%20der%20neuen%20Website%20f%C3%BCr%20Logop%C3%A4die%20Goldbach.%20Lassen%20Sie%20uns%20gerne%20dar%C3%BCber%20sprechen.%0A%0AViele%20Gr%C3%BC%C3%9Fe">
+        <span>E-Mail senden<small>Nachricht im Mailprogramm vorbereiten</small></span><span class="arrow">↗</span>
+      </a>
+    </div>
+    <p class="interest-note">Durch einen Klick wird nur Ihre bevorzugte App geöffnet. Die Nachricht wird erst von Ihnen geprüft und versendet.</p>
+  </div>
+</div>
+
+<script>
+  (() => {
+    const trigger = document.querySelector('.interest-trigger');
+    const modal = document.querySelector('#interest-modal');
+    const closers = document.querySelectorAll('[data-close-interest]');
+    if (!trigger || !modal) return;
+    const close = () => { modal.hidden = true; trigger.setAttribute('aria-expanded', 'false'); };
+    trigger.addEventListener('click', () => { modal.hidden = false; trigger.setAttribute('aria-expanded', 'true'); modal.querySelector('.interest-close').focus(); });
+    closers.forEach((el) => el.addEventListener('click', close));
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && !modal.hidden) close(); });
+  })();
+</script>
+</body>
+</html>
